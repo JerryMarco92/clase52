@@ -69,7 +69,7 @@ let id = 3;
 
 boton.addEventListener("click", function () {
 
-    id +=1;
+    id += 1;
     let nombre = prompt("nombre del producto");
     let precio = prompt("A que precio?");
     let stock = prompt("cuantos entran en stock?");
@@ -120,43 +120,43 @@ editar.addEventListener("click", function () {
     let itemModificador = prompt("Indica que quieres modificar: nombre, precio o stock");
     let valor;
 
-    if (itemModificador === "precio" || itemModificador === "stock"){
+    if (itemModificador === "precio" || itemModificador === "stock") {
         valor = Number(prompt("Introduce el nuevo valor para " + itemModificador));
-    }else if(itemModificador === "nombre"){
+    } else if (itemModificador === "nombre") {
         valor = prompt("Introduce el nuevo valor para " + itemModificador);
-    }else{
+    } else {
         alert("Valor a modificar no encontrado");
-        
+
     };
 
     for (let i = 0; i < productosArray.length; i++) {
-        if (productosArray[i].id === modificador){
+        if (productosArray[i].id === modificador) {
             productosArray[i][itemModificador] = valor;
             break;
         };
-    
+
     }
-reseteo();
+    reseteo();
 });
 
 
 
 
-   /* for (let i = 0; i < productosArray.length; i++) {
-        if (productosArray[i].id === modificador){
-            if (itemModificador === "precio" || itemModificador === "stock"){
-                productosArray[i][itemModificador] = Number(prompt("Introduce el nuevo valor para " + itemModificador));
-            }else{
-            productosArray[i][itemModificador] = prompt("Introduce el nuevo valor para " + itemModificador);
-            };
+/* for (let i = 0; i < productosArray.length; i++) {
+     if (productosArray[i].id === modificador){
+         if (itemModificador === "precio" || itemModificador === "stock"){
+             productosArray[i][itemModificador] = Number(prompt("Introduce el nuevo valor para " + itemModificador));
+         }else{
+         productosArray[i][itemModificador] = prompt("Introduce el nuevo valor para " + itemModificador);
+         };
 
-            break;
+         break;
 
-        } else {//esto esta mal
-            alert("El ID no coincide con ningun producto, intentelo de nuevo.");
+     } else {//esto esta mal
+         alert("El ID no coincide con ningun producto, intentelo de nuevo.");
 
-        }
-    };
+     }
+ };
 
 });*/
 
@@ -172,12 +172,30 @@ eliminar.addEventListener("click", function () {
     for (let i = 0; i < productosArray.length; ++i) {
         if (productosArray[i].id === eliminado) {
             indice = i;
+            productosArray.splice(indice, 1);
             break;
         }
+        
+    }
+    if ( indice === undefined){
+        alert("ID no encontrado");
     }
 
-    productosArray.splice(indice, 1);
+    
     reseteo();
+
+
+
+    /*if (productosArray[i].id === eliminado) {
+         for (let i = 0; i < productosArray.length; ++i) {
+        indice = i;
+        break;
+    }else{
+        alert("no existe este ID en productos
+}
+
+productosArray.splice(indice, 1);
+reseteo();*/
 });
 
 
@@ -188,18 +206,18 @@ quiero que se vacie todo al editar la lista justo antes de pintarla de nuevo:
 
 
 function mostrarProductos(obj) {
-    let ul = document.createElement("ul");
-    document.body.appendChild(ul);
+let ul = document.createElement("ul");
+document.body.appendChild(ul);
 
-    for (let item of obj) {
+for (let item of obj) {
 
-        let li = document.createElement("li");
-        ul.appendChild(li);
-        li.innerHTML = `
-        ${item.id} - ${item.nombre} - $${item.precio} - Stock: ${item.stock}
+    let li = document.createElement("li");
+    ul.appendChild(li);
+    li.innerHTML = `
+    ${item.id} - ${item.nombre} - $${item.precio} - Stock: ${item.stock}
 
-    
-    `}
+ 
+`}
 }
 
 mostrarProductos(productosArray); 
@@ -208,10 +226,16 @@ mostrarProductos(productosArray);
 
 */
 
-function reseteo(){
-    let lista = document.querySelector("ul");
-    if(lista){
-        lista.remove();
-        mostrarProductos(productosArray);
+    function reseteo() {
+        let lista = document.querySelector("ul");
+        if (lista) {
+            lista.remove();
+            mostrarProductos(productosArray);
+        };
     };
-};
+
+
+
+    let nuevoJSON = JSON.stringify(productosArray);
+
+    console.log("Este es el array pasado a json al final: " + nuevoJSON);
