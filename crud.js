@@ -64,12 +64,12 @@ eliminar.innerText = "eliminar por ID";
 let editar = document.createElement("button");
 document.body.appendChild(editar);
 editar.innerText = "Editar";
-
+let id = 3;
 
 
 boton.addEventListener("click", function () {
 
-    let id = productosArray.length + 1;
+    id +=1;
     let nombre = prompt("nombre del producto");
     let precio = prompt("A que precio?");
     let stock = prompt("cuantos entran en stock?");
